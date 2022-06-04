@@ -6,3 +6,6 @@ SELECT * from employee_payroll
 SELECT Salary FROM employee_payroll
 WHERE Name = 'Shravanthi'
 SELECT * from employee_payroll WHERE Start_Date BETWEEN CAST('2022-01-02' AS DATE) AND GETDATE()
+Alter table employee_payroll add Gender varchar(10)
+UPDATE employee_payroll set Gender ='F' where name = 'Shravanthi' or name ='Bhagya';
+UPDATE employee_payroll set Gender ='M' where Name='Vishnu';
