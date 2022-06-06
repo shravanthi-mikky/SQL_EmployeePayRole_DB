@@ -29,3 +29,11 @@ SELECT Max(salary) from employee_payroll WHERE gender = 'F' GROUP BY gender;
 SELECT Count(Name) from employee_payroll
 SELECT Count(Name) from employee_payroll where gender ='F' GROUP BY gender;
 SELECT Count(Name) from employee_payroll where gender ='M' GROUP BY gender;
+
+----UC8 --- Extend by adding PhoneNumber, Address, Department -----------
+
+alter table employee_payroll add phonenumber varchar(50),address varchar(200) not null default 'ABC Colony',department varchar(50);
+
+update employee_payroll set phonenumber='9000000001', department='Sales' where name='Vishnu';
+update employee_payroll set phonenumber='9000000002', department='Marketing' where name='Bhagya';
+update employee_payroll set phonenumber='9000000003', department='Sales' where name='Shravanthi';
