@@ -29,3 +29,28 @@ SELECT Max(salary) from employee_payroll WHERE gender = 'F' GROUP BY gender;
 SELECT Count(Name) from employee_payroll
 SELECT Count(Name) from employee_payroll where gender ='F' GROUP BY gender;
 SELECT Count(Name) from employee_payroll where gender ='M' GROUP BY gender;
+
+----UC8 --- Extend by adding PhoneNumber, Address, Department -----------
+
+alter table employee_payroll add phonenumber varchar(50),address varchar(200) not null default 'ABC Colony',department varchar(50);
+
+update employee_payroll set phonenumber='9000000001', department='Sales' where name='Vishnu';
+update employee_payroll set phonenumber='9000000002', department='Marketing' where name='Bhagya';
+update employee_payroll set phonenumber='9000000003', department='Sales' where name='Shravanthi';
+
+-----UC9--Extend employee_payroll to have Basic Pay, Deductions, Taxable Pay, Income Tax, Net Pay---
+
+alter table employee_payroll add BasicPay decimal, Deductions decimal, TaxablePay decimal, IncomeTax decimal, NetPay decimal;
+
+update employee_payroll set BasicPay=Salary;
+alter table employee_payroll drop column Salary;
+
+update employee_payroll set Deductions=1000 where department = 'sales';
+update employee_payroll set Deductions=2000 where department = 'Marketing';
+
+update employee_payroll set IncomeTax=250;
+update employee_payroll set TaxablePay=500;
+
+update employee_payroll set NetPay = (BasicPay-Deductions);
+
+select * from employee_payroll;
