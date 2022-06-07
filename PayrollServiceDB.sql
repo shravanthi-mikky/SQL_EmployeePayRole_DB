@@ -54,3 +54,8 @@ update employee_payroll set TaxablePay=500;
 update employee_payroll set NetPay = (BasicPay-Deductions);
 
 select * from employee_payroll;
+
+------UC10 -- Add Terisa in sales and marketing departments-------
+
+Insert into employee_payroll Values ('Terisa','2022-01-05','F','9000000005','ABC Colony','Sales',15000,1000,500,250,14000);
+Insert into employee_payroll Values ('Terisa','2022-01-05','F','9000000005','ABC Colony','Marketing',15000,1000,500,250,14000);
