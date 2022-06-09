@@ -59,3 +59,23 @@ select * from employee_payroll;
 
 Insert into employee_payroll Values ('Terisa','2022-01-05','F','9000000005','ABC Colony','Sales',15000,1000,500,250,14000);
 Insert into employee_payroll Values ('Terisa','2022-01-05','F','9000000005','ABC Colony','Marketing',15000,1000,500,250,14000);
+
+-------UC11 - NOrmalization and ER Diagram ----------------
+
+create table Company
+(compId INT PRIMARY KEY, compName varchar(20));
+SELECT* from Company
+
+create table employee
+(empId int PRIMARY KEY,Name varchar(20),compId INT REFERENCES Company(compId) ,Phone varchar(20),Address varchar(200),Gender char);
+select* from employee
+
+create Table payroll
+(empId INT REFERENCES employee(empId), BasicPay decimal,Deduction decimal, TaxablePay decimal ,IncomeTax decimal,NetPay decimal);
+select* from payroll
+
+CREATE TABLE DEPARTMENT(
+DeptName VARCHAR(10),
+empId INT REFERENCES employee(empId),
+deptId int PRIMARY KEY);
+select* from DEPARTMENT;
