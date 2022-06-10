@@ -79,3 +79,89 @@ DeptName VARCHAR(10),
 empId INT REFERENCES employee(empId),
 deptId int PRIMARY KEY);
 select* from DEPARTMENT;
+
+-------------Inserting values into Company table---------------------------------
+Insert Into Company Values (1,'BridgeLabs');
+Insert Into Company Values (2,'Wipro');
+Insert Into Company Values (3,'Infosys');
+Insert Into Company Values (4,'Amazon');
+SELECT* from Company
+-------------Inserting values into employee table---------------------------------
+Insert Into employee Values (19,'Shravanthi',1,'1234567891','Alwal,Secunderabad','F');
+Insert Into employee Values (20,'Tony',2,'1234567892','Alwal,Secunderabad','M');
+Insert Into employee Values (24,'Vishnu',4,'1234567890','Kanuru,Vijayawada','M');
+Insert Into employee Values (23,'Hema',3,'1234567898','Kanuru,Vijayawada','F');
+
+select* from employee
+-------------Inserting values into DEPARTMENT table---------------------------------
+Insert Into DEPARTMENT Values ('Production',22,16);
+Insert Into DEPARTMENT Values ('Developer',19,04);
+Insert Into DEPARTMENT Values ('HR',23,08);
+Insert Into DEPARTMENT Values ('Sales',24,19);
+Insert Into DEPARTMENT Values ('Marketing',20,13);
+
+
+select* from DEPARTMENT;
+-------------Inserting values into payroll table---------------------------------
+Insert Into payroll Values (22,20000,1000,180,200,19000);
+Insert Into payroll Values (19,30000,1500,240,300,28500);
+Insert Into payroll Values (20,35000,1500,240,300,33500);
+Insert Into payroll Values (23,40000,1500,240,300,38500);
+Insert Into payroll Values (24,45000,1500,240,300,43500);
+
+
+select* from payroll
+
+-----------UC13-Ensuring All retrieve queries from UC6 to UC10 with new table---------
+------------Retreive_UC_4-Ability to Retrive Values From Employee_payroll Table in dataBase------------------
+select company.compId,company.compName,
+  Employee.empId,Employee.Name,Employee.Phone,Employee.Address,Employee.Gender,
+  Payroll.BasicPay,Payroll.Deduction,Payroll.TaxablePay,Payroll.IncomeTax,Payroll.NetPay,
+  department.DeptName,department.deptId 
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+------------Retreive_UC_5-Ability to Retrive Salry of a Particular Employee From Employee_payroll Table in dataBase------------------
+select company.compId,company.compName,
+  Employee.empId,Employee.Name,Employee.Phone,Employee.Address,Employee.Gender,
+  Payroll.BasicPay,Payroll.Deduction,Payroll.TaxablePay,Payroll.IncomeTax,Payroll.NetPay,
+  department.DeptName,department.deptId
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId
+where (payroll.BasicPay=30000);
+
+------------UC_7-Ability to Find SUM,Avg,Min,Max,Count From Employee_payroll Table in dataBase------------------
+
+
+select sum(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+
+select Avg(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+
+select Min(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+
+select Max(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId
+
+select Count(*)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId
